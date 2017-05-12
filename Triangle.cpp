@@ -31,10 +31,6 @@ void Triangle::move( float time) {
 }
 
 void Triangle::draw(sf::RenderWindow* window) {
-	triangle.setPointCount(3);
-	triangle.setRadius(20);
-	triangle.setFillColor(sf::Color(139, 0, 0));
-	triangle.setPosition(x, y);
 	window->draw(triangle);
 }
 
@@ -75,3 +71,9 @@ void Triangle::SetRotation(sf::RenderWindow* window) {
 	float rotation = (atan2(dY, dX)) * 180 / 3.14159265;
 	triangle.setRotation(rotation);
 	}
+
+
+
+void Triangle::Shoot(sf::RenderWindow * window, float time) {
+
+}

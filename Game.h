@@ -7,6 +7,7 @@
 class Game {
 public:
 	Game();
+	~Game();
 private:
 	sf::RenderWindow* window;
 	Triangle triangle;

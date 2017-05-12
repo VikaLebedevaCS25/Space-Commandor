@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Bullet.h"
 #pragma once
 
 class Triangle {
@@ -7,21 +8,32 @@ private:
 	sf::CircleShape triangle;
 	float x;
 	float y;
-	int side;
+	Bullet bullets;
 public:
 	Triangle() {
 		x = 300;
 		y = 280;
-		side = 20;
+		triangle.setPointCount(3);
+		triangle.setRadius(20);
+		triangle.setFillColor(sf::Color(139, 0, 0));
+		triangle.setPosition(x, y);
+		triangle.setOrigin(20, 20);
+		bullets.setX((triangle.getPoint(1)).x);
+		bullets.setY((triangle.getPoint(1)).y-5);
 	}
 	float getX() { return x; }
 	float getY() { return y; }
-	int getSide() { return side; }
 	void setX(float x) { this->x = x; }
 	void setY(float y) { this->y = y; }
 	void move(float);
 	void draw(sf::RenderWindow* window);
 	bool MapCollision();
 	void SetRotation(sf::RenderWindow* window);
-	void Transposition();
+	/*void generationBullets();*/
+	void Shoot(sf::RenderWindow* window, float time);
+	void drawShoot(sf::RenderWindow* window) {
+		bullets.line.setPosition(bullets.getX(), bullets.getY());
+		window->draw(bullets.line);
+	}
+	/*void Transposition();*/
 };
