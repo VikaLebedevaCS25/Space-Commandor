@@ -28,6 +28,8 @@ void Triangle::move( float time) {
 	x = x + dx* time;
 	y = y + dy* time;
 
+	triangle.setPosition(x, y);
+
 }
 
 void Triangle::draw(sf::RenderWindow* window) {
@@ -69,11 +71,14 @@ void Triangle::SetRotation(sf::RenderWindow* window) {
 	float dX = pos.x - x;
 	float dY = pos.y - y;
 	float rotation = (atan2(dY, dX)) * 180 / 3.14159265;
-	triangle.setRotation(rotation);
+	triangle.setRotation(rotation-30);
 	}
 
 
 
 void Triangle::Shoot(sf::RenderWindow * window, float time) {
-
+	float dy = 0;
+	dy = dy - 0.08;
+	bullets.setY(bullets.getY() + dy*time);
+	bullets.line.setPosition(bullets.getX(), bullets.getY());
 }

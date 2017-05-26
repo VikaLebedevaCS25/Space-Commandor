@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Triangle.h"
+#include "Enemy.h"
 #pragma once
 
 
@@ -11,4 +12,5 @@ public:
 private:
 	sf::RenderWindow* window;
 	Triangle triangle;
+	Enemy enemy;
 };

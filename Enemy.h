@@ -3,44 +3,42 @@
 #include "Bullet.h"
 #pragma once
 
-class Triangle {
-private:
-	sf::CircleShape triangle;
-	float x;
-	float y;
-	int life;
-	Bullet bullets;
+class Enemy {
 public:
-	Triangle() {
-		x = 300;
-		y = 280;
-		life = 5;
+	Enemy() {
+		x = rand() % 640;
+		y = 14;
 		triangle.setPointCount(3);
 		triangle.setRadius(20);
-		triangle.setFillColor(sf::Color(139, 0, 0));
+		triangle.setFillColor(sf::Color(75, 0, 130));
 		triangle.setPosition(x, y);
 		triangle.setOrigin(20, 20);
-		bullets.setX(x-2);
-		bullets.setY(y-26);
+		bullets.setX(x - 2);
+		triangle.setRotation(180);
+		bullets.setY(y + 26);
 		bullets.line.setPosition(bullets.getX(), bullets.getY());
 	}
 	float getX() { return x; }
 	float getY() { return y; }
 	void setX(float x) { this->x = x; }
 	void setY(float y) { this->y = y; }
-	void move(float);
 	void draw(sf::RenderWindow* window);
 	bool MapCollision();
-	void SetRotation(sf::RenderWindow* window);
+	void move(float);
 	void generationBullets() {
 		if (bullets.MapCollision()) {
 			bullets.setX(x - 2);
-			bullets.setY(y - 26);
+			bullets.setY(y + 26);
 		}
 	}
 	void Shoot(sf::RenderWindow* window, float time);
 	void drawShoot(sf::RenderWindow* window) {
 		window->draw(bullets.line);
 	}
-	/*void Transposition();*/
+private:
+	sf::CircleShape triangle;
+	float x;
+	float y;
+	Bullet bullets;
+
 };

@@ -32,6 +32,14 @@ Game::Game() {
 		triangle.SetRotation(window);
 		triangle.Shoot(window, time);
 		triangle.drawShoot(window);
+		triangle.generationBullets();
+		
+		enemy.move(time);
+		enemy.draw(window);
+		enemy.Shoot(window, time);
+		enemy.drawShoot(window);
+		enemy.generationBullets();
+		
 
 		if (triangle.MapCollision()) {
 			window->close();
