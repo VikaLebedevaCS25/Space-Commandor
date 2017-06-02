@@ -70,6 +70,8 @@ void Triangle::SetRotation(sf::RenderWindow* window) {
 	sf::Vector2i pos = Mouse::getPosition(*window);
 	float dX = pos.x - x;
 	float dY = pos.y - y;
+	direction.x = dX;
+	direction.y = dY;
 	float rotation = (atan2(dY, dX)) * 180 / 3.14159265;
 	triangle.setRotation(rotation-30);
 	}
@@ -77,8 +79,19 @@ void Triangle::SetRotation(sf::RenderWindow* window) {
 
 
 void Triangle::Shoot(sf::RenderWindow * window, float time) {
-	float dy = 0;
-	dy = dy - 0.08;
-	bullets.setY(bullets.getY() + dy*time);
+	if (!isShoot) {
+		dy = direction.y;
+		dx = direction.x;
+		isShoot = 1;
+	}
+
+	float rotation = (atan2(dy, dx)) * 180 / 3.14159265;
+	bullets.line.setRotation(rotation - 90);
+	float _x = 0;
+	float _y = 0;
+	_x = _x + 0.001*dx;
+	_y = _y +0.001* dy;
+	bullets.setX(bullets.getX() + _x*time);
+	bullets.setY(bullets.getY() + _y*time);
 	bullets.line.setPosition(bullets.getX(), bullets.getY());
 }

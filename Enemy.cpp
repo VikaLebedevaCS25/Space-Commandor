@@ -46,15 +46,15 @@ void Enemy::Shoot(sf::RenderWindow * window, float time) {
 void Enemy::move(float time) {
 	float dy = 0;
 	float dx = 0;
-	dy = dy + 0.05;
-	y = y + dy* time;
-	dx =dy;
-	/*switch (rand() % 4) {
-	case 0: dx = log(dy);
-	case 1: dx =  -dy;
-	case 2: dx =  dy;
-	case 3: dx = tan(dy);
-	}*/
-	x = x + dx* time;
+	dy = dy + 0.5;
+	y = y + dy;
+	/*switch (rand() % 5) {
+	case 0: dx =dx + acos(dy);
+	case 1: dx =dx + dy;
+	case 2: dx = dx+ atan(dy) ;
+	case 3: dx = dx + 1 / dy;
+	case 4: dx = dx + dy*dy; 
+	}
+	x = x + dx;*/
 	triangle.setPosition(x, y);
 }
